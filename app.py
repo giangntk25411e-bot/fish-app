@@ -104,8 +104,12 @@ def hien_thi_ket_qua(kq: dict, anh: Image.Image) -> None:
     cot1, cot2, cot3 = st.columns(3)
     cot1.metric("Độ tin cậy", f"{do_tin_cay:.0%}")
     cot2.metric("Số vết bệnh", kq.get("so_vet_benh", len(predictions)))
-    cot3.metric("Mức độ (ước lượng)", f"{bieu_tuong} {muc_do}")
+    cot3.metric("Mức độ lan rộng (ước lượng)", f"{bieu_tuong} {muc_do}")
     st.progress(do_tin_cay)
+    st.caption(
+        "Mức độ lan rộng được ước lượng từ số vết bệnh và diện tích vùng tổn thương trên ảnh, "
+        "chưa phản ánh đầy đủ độ nghiêm trọng của bệnh. Cần cán bộ thú y thủy sản đánh giá chính xác."
+    )
 
     cac_benh = kq.get("cac_benh") or []
     if len(cac_benh) > 1:
